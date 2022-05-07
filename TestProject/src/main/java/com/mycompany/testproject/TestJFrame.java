@@ -77,15 +77,15 @@ public class TestJFrame extends javax.swing.JFrame {
                 Screenshot.takeSs();
                 
                 
-//                while(true){
-//                    System.out.println("Taking Screenshot");
-//                    Screenshot.takeSs();
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(TestJFrame.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
+            //    while(true){
+            //        System.out.println("Taking Screenshot");
+            //        Screenshot.takeSs();
+            //        try {
+            //            Thread.sleep(1000);
+            //        } catch (InterruptedException ex) {
+            //            Logger.getLogger(TestJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            //        }
+            //    }
                 
                 
                 
