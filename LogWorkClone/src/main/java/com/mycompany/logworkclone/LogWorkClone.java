@@ -12,6 +12,6 @@ package com.mycompany.logworkclone;
 public class LogWorkClone {
 
     public static void main(String[] args) {
-        //
+        login.main(args);
     }
 }
