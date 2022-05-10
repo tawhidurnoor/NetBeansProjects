@@ -15,5 +15,6 @@ public class LogWorkClone {
 
     public static void main(String[] args) {
         new login().setVisible(true);
+        //new MainInterface().setVisible(true);
     }
 }

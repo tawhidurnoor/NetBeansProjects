@@ -114,8 +114,10 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String email = jTextField1.getText();
         String password = jTextField2.getText();
-        System.out.println(email);
-        System.out.println(password);
+        
+        ApiLogin apiLogin = new ApiLogin(email, password);
+        boolean response = apiLogin.login();
+        System.out.println(response);
           //ApiTest api_test = new ApiTest(email, password);
           //api_test.login();
 //            new MainInterface().setVisible(true);
