@@ -55,7 +55,6 @@ public class MainInterface extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Time Tracker Solution");
         setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        setPreferredSize(new java.awt.Dimension(400, 500));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -71,7 +70,13 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel9.setText("Tracking For");
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Time Tracker", "Bizzy", "Mohanagar" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>( new ApiTest().login() ));
+        jComboBox3.setToolTipText("");
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "What are you working on?", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +174,11 @@ public class MainInterface extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     /**
      * @param args the command line arguments

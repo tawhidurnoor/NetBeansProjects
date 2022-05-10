@@ -106,8 +106,10 @@ public class login extends javax.swing.JFrame {
         String password = jTextField2.getText();
 //        System.out.println(email);
 //        System.out.println(password);
-          ApiTest api_test = new ApiTest(email, password);
-          api_test.login();
+          //ApiTest api_test = new ApiTest(email, password);
+          //api_test.login();
+//            new MainInterface().setVisible(true);
+//            this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

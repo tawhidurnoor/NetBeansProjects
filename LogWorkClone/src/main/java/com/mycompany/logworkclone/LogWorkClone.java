@@ -5,6 +5,8 @@
 
 package com.mycompany.logworkclone;
 
+import java.util.Arrays;
+
 /**
  *
  * @author User
@@ -12,6 +14,13 @@ package com.mycompany.logworkclone;
 public class LogWorkClone {
 
     public static void main(String[] args) {
-        login.main(args);
+        MainInterface.main(args);
+//        ApiTest apiTest = new ApiTest();
+//        apiTest.login();
+        System.out.println(Arrays.toString(new ApiTest().login()));
+        
+        String[] strings = {"Noor", "Tawhidur", "Badhan"};
+        //System.out.println(Arrays.toString(strings));
+        //new ApiTest().login();
     }
 }

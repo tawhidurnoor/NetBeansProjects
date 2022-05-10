@@ -4,47 +4,47 @@
  */
 package com.mycompany.logworkclone;
 
+import java.io.IOException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Scanner;
+import org.json.simple.parser.ParseException;
 
 /**
  *
  * @author User
  */
 public class ApiTest {
-    private String email;
-    private String password;
-
-    public ApiTest(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+//    private String email;
+//    private String password;
+//
+//    public ApiTest(String email, String password) {
+//        this.email = email;
+//        this.password = password;
+//    }
+    
+    public String[] projects;
     
     
     
-    public void login(){
-        /*
-        Maven dependency for JSON-simple:
-            <dependency>
-                <groupId>com.googlecode.json-simple</groupId>
-                <artifactId>json-simple</artifactId>
-                <version>1.1.1</version>
-            </dependency>
-         */
-
+    @SuppressWarnings("empty-statement")
+    public String[] login(){
+        
         try {
             //Public API:
             //https://www.metaweather.com/api/location/search/?query=<CITY>
             //https://www.metaweather.com/api/location/44418/
             
-            String url_link = "http://127.0.0.1:8000/dextop_login?" + "email=" + this.email + "&password=" + this.password;
+//            String url_link = "http://127.0.0.1:8000/dextop_login?" + "email=" + this.email + "&password=" + this.password;
 
-            URL url = new URL(url_link);
+             String url_link = "http://127.0.0.1:8000/dextop_projects";
+
+            URL url = new URL("http://127.0.0.1:8000/dextop_projects");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -75,16 +75,34 @@ public class ApiTest {
                 JSONArray dataObject = (JSONArray) parse.parse(String.valueOf(informationString));
 
                 //Get the first JSON object in the JSON array
-                System.out.println(dataObject.get(9));
+//                System.out.println(dataObject.get(0));
 
-                JSONObject countryData = (JSONObject) dataObject.get(9);
+//                String projects_string = dataObject.toString();
+                //String[] project_string_array = (String[]) dataObject.toArray();
+                
+                
+                 //String[] projects;
+                 this.projects = new String[dataObject.size()];
+                for(int i=0;i<=dataObject.size();i++){
+                    //System.out.println(dataObject.get(i));
+                    projects[i] = (String) dataObject.get(i);
+                }
 
-                System.out.println(countryData.get("woeid"));
+//                JSONObject countryData = (JSONObject) dataObject.get(0);
+//
+//                System.out.println(countryData.get("woeid"));
+                System.out.println(Arrays.toString(projects));
+                
+                
 
             }
+
+
         } catch (Exception e) {
-            e.printStackTrace();
         }
+        
+        return this.projects;
+        
     }
     
 }
