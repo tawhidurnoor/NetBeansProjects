@@ -13,16 +13,23 @@ import java.awt.Toolkit;
  */
 public class MainInterface extends javax.swing.JFrame {
 
+    private String email;
     /**
      * Creates new form MainInterface
+     * @param email
      */
-    public MainInterface() {
+    public MainInterface(String email) {
+        this.email = email;
         initComponents();
         
         //for centering
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
+    }
+
+    private MainInterface() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -78,7 +85,7 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel9.setText("Tracking For");
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>( new ApiTest().login() ));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>( new ApiTest(this.email).login() ));
         jComboBox3.setToolTipText("");
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

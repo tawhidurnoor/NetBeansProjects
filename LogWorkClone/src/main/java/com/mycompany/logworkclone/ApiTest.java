@@ -20,13 +20,12 @@ import org.json.simple.parser.ParseException;
  * @author User
  */
 public class ApiTest {
-//    private String email;
+    private String email;
 //    private String password;
 //
-//    public ApiTest(String email, String password) {
-//        this.email = email;
-//        this.password = password;
-//    }
+    public ApiTest(String email) {
+        this.email = email;
+    }
     
     public String[] projects;
     
@@ -44,7 +43,7 @@ public class ApiTest {
 
              String url_link = "http://127.0.0.1:8000/dextop_projects";
 
-            URL url = new URL("http://127.0.0.1:8000/dextop_projects");
+            URL url = new URL("http://127.0.0.1:8000/dextop_projects" + "?email=" + this.email);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

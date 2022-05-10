@@ -127,7 +127,7 @@ public class login extends javax.swing.JFrame {
         ApiLogin apiLogin = new ApiLogin(email, password);
         boolean response = apiLogin.login();
         if(response == true){
-            new MainInterface().setVisible(true);
+            new MainInterface(email).setVisible(true);
             this.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(null, "Error while logging!");
