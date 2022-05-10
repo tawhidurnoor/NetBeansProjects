@@ -14,13 +14,6 @@ import java.util.Arrays;
 public class LogWorkClone {
 
     public static void main(String[] args) {
-        MainInterface.main(args);
-//        ApiTest apiTest = new ApiTest();
-//        apiTest.login();
-        System.out.println(Arrays.toString(new ApiTest().login()));
-        
-        String[] strings = {"Noor", "Tawhidur", "Badhan"};
-        //System.out.println(Arrays.toString(strings));
-        //new ApiTest().login();
+        new login().setVisible(true);
     }
 }
