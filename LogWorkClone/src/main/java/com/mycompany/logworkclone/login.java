@@ -4,6 +4,10 @@
  */
 package com.mycompany.logworkclone;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
@@ -15,6 +19,11 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
+        
+        //for centering
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
     }
 
     /**
@@ -117,7 +126,12 @@ public class login extends javax.swing.JFrame {
         
         ApiLogin apiLogin = new ApiLogin(email, password);
         boolean response = apiLogin.login();
-        System.out.println(response);
+        if(response == true){
+            new MainInterface().setVisible(true);
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Error while logging!");
+        }
           //ApiTest api_test = new ApiTest(email, password);
           //api_test.login();
 //            new MainInterface().setVisible(true);
