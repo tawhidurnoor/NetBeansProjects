@@ -1,1 +1,0 @@
-java -jar LogWorkClone-1.0-SNAPSHOT.jar

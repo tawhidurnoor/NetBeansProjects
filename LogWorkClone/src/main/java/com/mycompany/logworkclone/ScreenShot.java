@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  *
  * @author User
  */
-public class ScreenShot {
+public class ScreenShot extends Thread{
     
     private String email;
     private String project;
@@ -36,7 +36,9 @@ public class ScreenShot {
 
     public static final long serialVersionUID = 1L;
 
-    public void capture() {
+    
+    @Override
+    public void run() {
         while (true) {
 
             try {
@@ -54,7 +56,7 @@ public class ScreenShot {
                 Rectangle capture = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
                 BufferedImage Image = r.createScreenCapture(capture);
                 ImageIO.write(Image, "jpg", new File(path));
-                System.out.println("Screenshot saved");
+                //System.out.println("Screenshot saved");
                 //System.out.println(Screenshot.stopper);
             } catch (AWTException | IOException | InterruptedException ex) {
                 System.out.println(ex);

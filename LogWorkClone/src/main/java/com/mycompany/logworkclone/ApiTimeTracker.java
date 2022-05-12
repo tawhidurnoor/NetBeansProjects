@@ -16,7 +16,7 @@ import org.json.simple.parser.ParseException;
  *
  * @author User
  */
-public class ApiTimeTracker {
+public class ApiTimeTracker extends Thread{
     private String email;
     private String project;
     private String task_title;
@@ -28,7 +28,8 @@ public class ApiTimeTracker {
         this.task_title = task_title;
     }
     
-    public void track(){
+    @Override
+    public void run(){
         try {
 
             URL url = new URL("http://127.0.0.1:8000/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title);

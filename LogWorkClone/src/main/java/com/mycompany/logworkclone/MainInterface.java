@@ -204,16 +204,17 @@ public class MainInterface extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hour)
-                    .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(second)
+                        .addComponent(jLabel12)
+                        .addComponent(milisecond))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(minute)
-                        .addComponent(jLabel3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(second)
-                            .addComponent(jLabel12)
-                            .addComponent(milisecond))))
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(hour)
+                        .addComponent(jLabel2)))
                 .addGap(58, 58, 58)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -282,14 +283,17 @@ public class MainInterface extends javax.swing.JFrame {
         };
 
         String task_title = jTextField1.getText();
+        task_title = task_title.replace(" ","%20");
+        
         String project = jComboBox3.getSelectedItem().toString();
         project = project.replace(" ","%20");
+        new ApiTimeTracker(this.email,project,task_title).start();
         
-        new ApiTimeTracker(this.email,task_title,project).track();
         
-        //new ScreenShot("","").capture();
+        new ScreenShot("","").start();
         
         t.start();
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
