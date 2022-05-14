@@ -246,7 +246,7 @@ public class MainInterface extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
    
         state = true;
-        Thread t = new Thread() {
+        Thread stopwatch = new Thread() {
             public void run() {
                 for (;;) {
                     if (state == true) {
@@ -286,18 +286,26 @@ public class MainInterface extends javax.swing.JFrame {
             }
         };
         
+        //take screenshot
+        new ScreenShot("","").start();
+        
+        //store task tracker 
         String task_title = jTextField1.getText();
-        task_title = task_title.replace(" ","%20");
+        
+        if(task_title.isEmpty()){
+            task_title = "No%20Title";
+        }else{
+            task_title = task_title.replace(" ","%20");
+        }
         
         String project = jComboBox3.getSelectedItem().toString();
         project = project.replace(" ","%20");
         new ApiTimeTracker(this.email,project,task_title).start();
         
+        //start stopwatch
+        stopwatch.start();
         
-        new ScreenShot("","").start();
-        
-        t.start();
-        
+        //disable all input
         disable_all();
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -313,8 +321,10 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
+        //enable all input
         enable_all();
-        // TODO add your handling code here:
+        
+        //reset stopwatch
         state = false;
         milliseconds = 0;
         seconds = 0;
