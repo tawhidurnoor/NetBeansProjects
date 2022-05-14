@@ -132,6 +132,7 @@ public class MainInterface extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Stop");
         jButton2.setBorder(null);
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -243,6 +244,7 @@ public class MainInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   
         state = true;
         Thread t = new Thread() {
             public void run() {
@@ -283,7 +285,7 @@ public class MainInterface extends javax.swing.JFrame {
                 }
             }
         };
-
+        
         String task_title = jTextField1.getText();
         task_title = task_title.replace(" ","%20");
         
@@ -296,6 +298,7 @@ public class MainInterface extends javax.swing.JFrame {
         
         t.start();
         
+        disable_all();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -309,6 +312,8 @@ public class MainInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        enable_all();
         // TODO add your handling code here:
         state = false;
         milliseconds = 0;
@@ -350,6 +355,24 @@ public class MainInterface extends javax.swing.JFrame {
                 new MainInterface().setVisible(true);
             }
         });
+    }
+    
+    private void disable_all(){
+        jComboBox3.disable();
+        jTextField1.disable();
+        jButton1.setEnabled(false);
+        
+        //enable stop button
+        jButton2.setEnabled(true);
+    }
+    
+    private void enable_all(){
+        jComboBox3.enable();
+        jTextField1.enable();
+        jButton1.setEnabled(true);
+        
+        //disable stop button
+        jButton2.setEnabled(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
