@@ -33,8 +33,7 @@ public class ApiTimeTracker extends Thread{
         try {
 
             URL url = new URL("http://127.0.0.1:8000/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title);
-//            URL url = new URL("http://127.0.0.1:8000/dextop_time_tracker?" + "email=test@gmail.com&project=Bizzy%20-%20Web%20Module&task_title=dextop");
-            System.out.println(url);
+//          URL url = new URL("http://127.0.0.1:8000/dextop_time_tracker?" + "email=test@gmail.com&project=Bizzy%20-%20Web%20Module&task_title=dextop");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
