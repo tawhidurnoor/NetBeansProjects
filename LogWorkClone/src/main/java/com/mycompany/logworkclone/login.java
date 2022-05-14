@@ -48,16 +48,16 @@ public class login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 248));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
         jLabel1.setText("Email");
 
-        emailInput.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        emailInput.setFont(new java.awt.Font("Source Sans Pro", 0, 16)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
         jLabel2.setText("Password");
 
         jButton1.setBackground(new java.awt.Color(0, 204, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Source Sans Pro Black", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +66,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Source Sans Pro", 1, 18)); // NOI18N
         jLabel3.setText("Time Tracker Solution");
 
         passwordInput.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -85,7 +85,7 @@ public class login extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(emailInput, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +102,7 @@ public class login extends javax.swing.JFrame {
                 .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

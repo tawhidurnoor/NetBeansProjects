@@ -19,6 +19,7 @@ public class MainInterface extends javax.swing.JFrame {
      * @param email
      */
     private String email;
+    private String user_name;
 
     static int milliseconds = 0;
     static int seconds = 0;
@@ -90,16 +91,16 @@ public class MainInterface extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 500));
 
-        hour.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        hour.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
         hour.setText("00");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Source Sans Pro Black", 1, 16)); // NOI18N
         jLabel8.setText("Worked Today");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Source Sans Pro Black", 1, 16)); // NOI18N
         jLabel9.setText("Tracking For");
 
-        jComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jComboBox3.setFont(new java.awt.Font("Source Sans Pro", 0, 16)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>( new ApiTest(this.email).login() ));
         jComboBox3.setToolTipText("");
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +117,7 @@ public class MainInterface extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(0, 153, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Start");
         jButton1.setBorder(null);
@@ -127,7 +128,7 @@ public class MainInterface extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(204, 0, 51));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Stop");
         jButton2.setBorder(null);
@@ -137,24 +138,25 @@ public class MainInterface extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
         jLabel1.setText("Time Tracker Solution alpha_1.0.0");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
         jLabel2.setText(":");
 
-        minute.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        minute.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
         minute.setText("00");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
         jLabel3.setText(":");
 
-        second.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        second.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
         second.setText("00");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
         jLabel12.setText(":");
 
-        milisecond.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        milisecond.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         milisecond.setText("00");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -221,7 +223,7 @@ public class MainInterface extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -266,10 +268,10 @@ public class MainInterface extends javax.swing.JFrame {
                                 hours++;
                             }
 
-                            milisecond.setText("" + milliseconds);
-                            second.setText("" + seconds);
-                            minute.setText("" + minutes);
-                            hour.setText("" + hours);
+                            milisecond.setText("" + String.format("%02d", milliseconds));
+                            second.setText("" + String.format("%02d", seconds));
+                            minute.setText("" + String.format("%02d", minutes));
+                            hour.setText("" + String.format("%02d", hours));
 
                             milliseconds++;
 
