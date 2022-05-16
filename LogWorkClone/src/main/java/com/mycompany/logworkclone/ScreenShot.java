@@ -10,7 +10,12 @@ import java.awt.Toolkit;
 import java.awt.Robot;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.File;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse.BodyHandlers;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import javax.imageio.ImageIO;
 
 //for date
@@ -21,24 +26,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //for uploading files to server
-//import java.io.File;
-//import org.apache.http.HttpEntity;
-//import org.apache.http.client.methods.CloseableHttpResponse;
-//import org.apache.http.client.methods.HttpPost;
-//import org.apache.http.entity.ContentType;
-//import org.apache.http.entity.mime.MultipartEntityBuilder;
-//import org.apache.http.entity.mime.content.FileBody;
-//import org.apache.http.entity.mime.content.StringBody;
-//import org.apache.http.impl.client.CloseableHttpClient;
-//import org.apache.http.impl.client.HttpClients;
-//import org.apache.http.util.EntityUtils;
+import java.io.File;
 
 /**
  *
  * @author User
  */
-public class ScreenShot extends Thread{
-    
+public class ScreenShot extends Thread {
+
     private String email;
     private String project;
 
@@ -49,7 +44,6 @@ public class ScreenShot extends Thread{
 
     public static final long serialVersionUID = 1L;
 
-    
     @Override
     public void run() {
         while (true) {
@@ -64,7 +58,7 @@ public class ScreenShot extends Thread{
                 String timeStamp = sdf3.format(timestamp);
                 String file_name = timeStamp + "_ScreenShot.jpg";
                 //String path = "E:/Tawhidur Nood Badhan/Time_Tracker_Solution--Web-Module/public/captured/"+file_name;
-                String path = "E:/Laravel Projects/Time_Tracker_Solution--Web-Module/public/captured/"+file_name;
+                String path = "E:/captured/" + file_name;
 
                 // Used to get ScreenSize and capture image
                 Rectangle capture = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
@@ -72,11 +66,31 @@ public class ScreenShot extends Thread{
                 ImageIO.write(Image, "jpg", new File(path));
                 //System.out.println("Screenshot saved");
                 //System.out.println(Screenshot.stopper);
+
+                //upload the file to server
+                var fileA = new File("E:/captured/" + file_name);
+
+                var mimeMultipartData = MimeMultipartData.newBuilder()
+                        .withCharset(StandardCharsets.UTF_8)
+                        .addFile("file", fileA.toPath(), Files.probeContentType(fileA.toPath()))
+                        .build();
+
+                var request = HttpRequest.newBuilder()
+                        .header("Content-Type", mimeMultipartData.getContentType())
+                        .POST(mimeMultipartData.getBodyPublisher())
+                        .uri(URI.create("http://127.0.0.1:8000/dextop_test_upload"))
+                        .version(HttpClient.Version.HTTP_1_1)
+                        .build();
+
+                var httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();
+                var response = httpClient.send(request, BodyHandlers.ofString());
+                
+
             } catch (AWTException | IOException | InterruptedException ex) {
                 System.out.println(ex);
             }
             try {
-                Thread.sleep(5000);
+                Thread.sleep(60000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ScreenShot.class.getName()).log(Level.SEVERE, null, ex);
             }
