@@ -32,7 +32,7 @@ public class ApiTest {
     
     
     @SuppressWarnings("empty-statement")
-    public String[] login(){
+    public String[] getProjectList(){
         
         try {
             //Public API:

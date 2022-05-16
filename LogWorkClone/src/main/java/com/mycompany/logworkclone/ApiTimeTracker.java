@@ -37,7 +37,7 @@ public class ApiTimeTracker extends Thread{
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-            conn.connect();
+//            conn.connect();
 
             //Check if connect is made
             int responseCode = conn.getResponseCode();

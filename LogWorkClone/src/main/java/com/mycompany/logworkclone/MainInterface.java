@@ -102,7 +102,7 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel9.setText("Tracking For");
 
         jComboBox3.setFont(new java.awt.Font("Source Sans Pro", 0, 16)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>( new ApiTest(this.email).login() ));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>( new ApiTest(this.email).getProjectList() ));
         jComboBox3.setToolTipText("");
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,6 +349,7 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         this.setVisible(false);
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>( new ApiTest(this.email).getProjectList() ));
         this.setVisible(true);
     }//GEN-LAST:event_refreshButtonActionPerformed
 
