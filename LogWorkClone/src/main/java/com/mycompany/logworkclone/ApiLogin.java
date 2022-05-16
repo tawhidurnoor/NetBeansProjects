@@ -64,7 +64,7 @@ public class ApiLogin {
                 JSONArray dataObject = (JSONArray) parse.parse(String.valueOf(informationString));
 
                 //Get the first JSON object in the JSON array
-                System.out.println(dataObject);
+                System.out.println(dataObject.toString()[0]);
                 if(dataObject.toString().equals("[]")){
                     this.response = false;
                 }else{
