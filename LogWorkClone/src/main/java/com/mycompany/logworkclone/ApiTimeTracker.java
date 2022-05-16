@@ -4,6 +4,8 @@
  */
 package com.mycompany.logworkclone;
 
+import com.mycompany.logworkclone.Models.TimeTracker;
+import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -30,15 +32,34 @@ public class ApiTimeTracker extends Thread {
         this.task_title = task_title;
     }
 
-    @Override
-    public void run() {
+//    @Override
+//    public void run() {
+//        HttpClient client = HttpClient.newHttpClient();
+//        HttpRequest request = (HttpRequest) HttpRequest.newBuilder()
+//                .uri(URI.create("http://127.0.0.1:8000/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title))
+//                .build();
+//        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+//                .thenApply(HttpResponse::body)
+//                .thenAccept(System.out::println)
+//                .join();
+//    }
+    
+    public TimeTracker track() {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = (HttpRequest) HttpRequest.newBuilder()
                 .uri(URI.create("http://127.0.0.1:8000/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title))
                 .build();
-        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+//        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+//                .thenApply(HttpResponse::body)
+//                .thenAccept(System.out::println)
+//                .join();
+        String timeTrackerIdString = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
-                .thenAccept(System.out::println)
                 .join();
+        BigInteger timeTrackerId = new BigInteger(timeTrackerIdString);
+        
+         TimeTracker timeTracker = new TimeTracker(timeTrackerId);
+         return timeTracker;
     }
+
 }

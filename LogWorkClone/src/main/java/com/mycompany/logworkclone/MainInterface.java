@@ -6,6 +6,8 @@ package com.mycompany.logworkclone;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.math.BigInteger;
+import com.mycompany.logworkclone.Models.TimeTracker;
 
 /**
  *
@@ -315,8 +317,10 @@ public class MainInterface extends javax.swing.JFrame {
         
         String project = jComboBox3.getSelectedItem().toString();
         project = project.replace(" ","%20");
-        new ApiTimeTracker(this.email,project,task_title).start();
-        
+        ApiTimeTracker apiTimeTracker =  new ApiTimeTracker(this.email,project,task_title);
+        TimeTracker timeTracker = apiTimeTracker.track();
+        BigInteger timeTrackerId = timeTracker.getTuimeTrackerId();
+        System.out.println(timeTrackerId + " From Main Interface");
         //start stopwatch
         stopwatch.start();
         
