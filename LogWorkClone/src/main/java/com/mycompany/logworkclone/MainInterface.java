@@ -61,8 +61,8 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        startButton = new javax.swing.JButton();
+        stopButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         minute = new javax.swing.JLabel();
@@ -70,6 +70,7 @@ public class MainInterface extends javax.swing.JFrame {
         second = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         milisecond = new javax.swing.JLabel();
+        refreshButton = new javax.swing.JButton();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("00 : 00 : 00");
@@ -116,26 +117,26 @@ public class MainInterface extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 0));
-        jButton1.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Start");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        startButton.setBackground(new java.awt.Color(0, 153, 0));
+        startButton.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
+        startButton.setForeground(new java.awt.Color(255, 255, 255));
+        startButton.setText("Start");
+        startButton.setBorder(null);
+        startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                startButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(204, 0, 51));
-        jButton2.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Stop");
-        jButton2.setBorder(null);
-        jButton2.setEnabled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        stopButton.setBackground(new java.awt.Color(204, 0, 51));
+        stopButton.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
+        stopButton.setForeground(new java.awt.Color(255, 255, 255));
+        stopButton.setText("Stop");
+        stopButton.setBorder(null);
+        stopButton.setEnabled(false);
+        stopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                stopButtonActionPerformed(evt);
             }
         });
 
@@ -160,6 +161,17 @@ public class MainInterface extends javax.swing.JFrame {
         milisecond.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         milisecond.setText("00");
 
+        refreshButton.setBackground(new java.awt.Color(102, 153, 255));
+        refreshButton.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
+        refreshButton.setForeground(new java.awt.Color(255, 255, 255));
+        refreshButton.setText("Refresh");
+        refreshButton.setBorder(null);
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -170,9 +182,11 @@ public class MainInterface extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(stopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jTextField1)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,8 +236,9 @@ public class MainInterface extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(stopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
@@ -243,7 +258,7 @@ public class MainInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
    
         state = true;
         Thread stopwatch = new Thread() {
@@ -308,7 +323,7 @@ public class MainInterface extends javax.swing.JFrame {
         //disable all input
         disable_all();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_startButtonActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -319,7 +334,7 @@ public class MainInterface extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
         
         //enable all input
         enable_all();
@@ -330,7 +345,12 @@ public class MainInterface extends javax.swing.JFrame {
         seconds = 0;
         minutes = 0;
         hours = 0;
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_stopButtonActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        this.setVisible(false);
+        this.setVisible(true);
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,27 +388,27 @@ public class MainInterface extends javax.swing.JFrame {
     }
     
     private void disable_all(){
-        jComboBox3.disable();
-        jTextField1.disable();
-        jButton1.setEnabled(false);
+        jComboBox3.setEnabled(false);
+        jTextField1.setEnabled(false);
+        startButton.setEnabled(false);
+        refreshButton.setEnabled(false);
         
         //enable stop button
-        jButton2.setEnabled(true);
+        stopButton.setEnabled(true);
     }
     
     private void enable_all(){
-        jComboBox3.enable();
-        jTextField1.enable();
-        jButton1.setEnabled(true);
+        jComboBox3.setEnabled(true);
+        jTextField1.setEnabled(true);
+        startButton.setEnabled(true);
+        refreshButton.setEnabled(true);
         
         //disable stop button
-        jButton2.setEnabled(false);
+        stopButton.setEnabled(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel hour;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
@@ -404,6 +424,9 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel milisecond;
     private javax.swing.JLabel minute;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JLabel second;
+    private javax.swing.JButton startButton;
+    private javax.swing.JButton stopButton;
     // End of variables declaration//GEN-END:variables
 }
