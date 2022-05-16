@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
+import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.logging.Level;
@@ -45,8 +46,10 @@ public class ApiTimeTracker extends Thread {
 //    }
     
     public TimeTracker track() {
+        System.out.println("http://127.0.0.1:8000/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = (HttpRequest) HttpRequest.newBuilder()
+                .version(Version.HTTP_1_1)
                 .uri(URI.create("http://127.0.0.1:8000/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title))
                 .build();
 //        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())

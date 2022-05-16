@@ -20,6 +20,19 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//for uploading files to server
+//import java.io.File;
+//import org.apache.http.HttpEntity;
+//import org.apache.http.client.methods.CloseableHttpResponse;
+//import org.apache.http.client.methods.HttpPost;
+//import org.apache.http.entity.ContentType;
+//import org.apache.http.entity.mime.MultipartEntityBuilder;
+//import org.apache.http.entity.mime.content.FileBody;
+//import org.apache.http.entity.mime.content.StringBody;
+//import org.apache.http.impl.client.CloseableHttpClient;
+//import org.apache.http.impl.client.HttpClients;
+//import org.apache.http.util.EntityUtils;
+
 /**
  *
  * @author User
@@ -50,7 +63,8 @@ public class ScreenShot extends Thread{
                 SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
                 String timeStamp = sdf3.format(timestamp);
                 String file_name = timeStamp + "_ScreenShot.jpg";
-                String path = "E:/Tawhidur Nood Badhan/Time_Tracker_Solution--Web-Module/public/captured/"+file_name;
+                //String path = "E:/Tawhidur Nood Badhan/Time_Tracker_Solution--Web-Module/public/captured/"+file_name;
+                String path = "E:/Laravel Projects/Time_Tracker_Solution--Web-Module/public/captured/"+file_name;
 
                 // Used to get ScreenSize and capture image
                 Rectangle capture = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());

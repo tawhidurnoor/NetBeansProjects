@@ -321,6 +321,7 @@ public class MainInterface extends javax.swing.JFrame {
         TimeTracker timeTracker = apiTimeTracker.track();
         BigInteger timeTrackerId = timeTracker.getTuimeTrackerId();
         System.out.println(timeTrackerId + " From Main Interface");
+        
         //start stopwatch
         stopwatch.start();
         
