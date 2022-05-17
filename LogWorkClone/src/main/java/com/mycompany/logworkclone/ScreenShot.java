@@ -84,6 +84,7 @@ public class ScreenShot extends Thread {
 
                 var httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();
                 var response = httpClient.send(request, BodyHandlers.ofString());
+                System.out.println(response);
                 
 
             } catch (AWTException | IOException | InterruptedException ex) {
