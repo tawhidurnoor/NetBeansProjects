@@ -35,11 +35,11 @@ import java.io.File;
 public class ScreenShot extends Thread {
 
     private String email;
-    private String project;
+    private String timeTrackerId;
 
     public ScreenShot(String email, String project) {
         this.email = email;
-        this.project = project;
+        this.timeTrackerId = project;
     }
 
     public static final long serialVersionUID = 1L;
@@ -78,7 +78,7 @@ public class ScreenShot extends Thread {
                 var request = HttpRequest.newBuilder()
                         .header("Content-Type", mimeMultipartData.getContentType())
                         .POST(mimeMultipartData.getBodyPublisher())
-                        .uri(URI.create("http://127.0.0.1:8000/dextop_test_upload"))
+                        .uri(URI.create("http://127.0.0.1:8000/dextop_test_upload?email=" + this.email + "&timeTrackerId=" + this.timeTrackerId))
                         .version(HttpClient.Version.HTTP_1_1)
                         .build();
 
@@ -91,7 +91,7 @@ public class ScreenShot extends Thread {
                 System.out.println(ex);
             }
             try {
-                Thread.sleep(60000);
+                Thread.sleep(5*60*1000); //minutes  *seconds in a minute * milliseconds in a second
             } catch (InterruptedException ex) {
                 Logger.getLogger(ScreenShot.class.getName()).log(Level.SEVERE, null, ex);
             }

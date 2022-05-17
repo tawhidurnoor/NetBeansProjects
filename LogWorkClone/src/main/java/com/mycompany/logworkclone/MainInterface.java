@@ -22,6 +22,7 @@ public class MainInterface extends javax.swing.JFrame {
      */
     private String email;
     private String user_name;
+    private BigInteger timeTrackerId;
 
     static int milliseconds = 0;
     static int seconds = 0;
@@ -303,8 +304,6 @@ public class MainInterface extends javax.swing.JFrame {
             }
         };
         
-        //take screenshot
-        new ScreenShot("","").start();
         
         //store task tracker 
         String task_title = jTextField1.getText();
@@ -319,8 +318,11 @@ public class MainInterface extends javax.swing.JFrame {
         project = project.replace(" ","%20");
         ApiTimeTracker apiTimeTracker =  new ApiTimeTracker(this.email,project,task_title);
         TimeTracker timeTracker = apiTimeTracker.track();
-        BigInteger timeTrackerId = timeTracker.getTuimeTrackerId();
+        this.timeTrackerId = timeTracker.getTuimeTrackerId();
         System.out.println(timeTrackerId + " From Main Interface");
+        
+        //take screenshot
+        new ScreenShot(this.email,this.timeTrackerId.toString()).start();
         
         //start stopwatch
         stopwatch.start();
@@ -340,7 +342,7 @@ public class MainInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
-        
+
         //enable all input
         enable_all();
         
@@ -350,6 +352,8 @@ public class MainInterface extends javax.swing.JFrame {
         seconds = 0;
         minutes = 0;
         hours = 0;
+        
+        new ApiTimeTrackerStop(this.timeTrackerId.toString()).stopTracking();
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
