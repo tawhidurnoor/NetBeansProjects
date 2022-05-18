@@ -22,7 +22,7 @@ import java.nio.file.Files;
 public class ApiUpload {
 
     public void upload() throws MalformedURLException, IOException {
-        String url = "http://127.0.0.1:8000/dextop_test_upload";
+        String url = "https://timetracker.codecloudtech.com/dextop_test_upload";
         String charset = "UTF-8";
         String param = "value";
         File textFile = new File("/path/to/file.txt");
