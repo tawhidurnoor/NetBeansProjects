@@ -43,7 +43,7 @@ public class ApiTest {
 
              String url_link = "http://127.0.0.1:8000/dextop_projects";
 
-            URL url = new URL("https://timetracker.codecloudtech.com/dextop_projects" + "?email=" + this.email);
+            URL url = new URL("http://127.0.0.1:8000/dextop_projects" + "?email=" + this.email);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

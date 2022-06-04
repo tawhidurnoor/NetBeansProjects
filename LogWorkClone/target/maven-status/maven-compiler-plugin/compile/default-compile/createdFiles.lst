@@ -9,9 +9,14 @@ com\mycompany\logworkclone\LogWorkClone.class
 com\mycompany\logworkclone\MainInterface$3.class
 com\mycompany\logworkclone\ApiLogin.class
 com\mycompany\logworkclone\ApiTimeTracker.class
+com\mycompany\logworkclone\MimeMultipartData.class
+com\mycompany\logworkclone\MimeMultipartData$Builder$MimedFile.class
 com\mycompany\logworkclone\ScreenShot.class
+com\mycompany\logworkclone\MimeMultipartData$Builder.class
+com\mycompany\logworkclone\Models\TimeTracker.class
 com\mycompany\logworkclone\login$1.class
 com\mycompany\logworkclone\MainInterface$7.class
+com\mycompany\logworkclone\ApiTimeTrackerStop.class
 com\mycompany\logworkclone\ApiUpload.class
 com\mycompany\logworkclone\MainInterface$2.class
 com\mycompany\logworkclone\ApiTest.class

@@ -30,7 +30,7 @@ public class ApiLogin {
     public boolean login(){
         try {
 
-            URL url = new URL("https://timetracker.codecloudtech.com/dextop_login?" + "email=" + this.email + "&password=" + this.password);
+            URL url = new URL("http://127.0.0.1:8000/dextop_login?" + "email=" + this.email + "&password=" + this.password);
             System.out.println(url);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
