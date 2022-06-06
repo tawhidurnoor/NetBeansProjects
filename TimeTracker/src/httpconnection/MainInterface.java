@@ -6,7 +6,11 @@ package httpconnection;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.math.BigInteger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import models.TimeTracker;
 
 /**
@@ -32,6 +36,27 @@ public class MainInterface extends javax.swing.JFrame {
     static boolean state = true;
 
     public MainInterface(String email) {
+        //close warning
+//        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+//
+//        this.addWindowListener(new WindowAdapter() {
+//            @Override
+//            @SuppressWarnings("empty-statement")
+//            public void windowClosing(WindowEvent e) {
+//                int choose = JOptionPane.showConfirmDialog(null,
+//                        "Do you really want to exit the application ?",
+//                        "Confirm Close", JOptionPane.YES_NO_OPTION,
+//                        JOptionPane.INFORMATION_MESSAGE);
+//                if (choose == JOptionPane.YES_OPTION) {
+//                    e.getWindow().dispose();
+//                    System.out.println("close");
+//
+//                } else {
+//                    ;
+//                }
+//            }
+//        });
+
         this.email = email;
         initComponents();
 
@@ -262,9 +287,10 @@ public class MainInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-   
+
         state = true;
         Thread stopwatch = new Thread() {
+            @Override
             public void run() {
                 for (;;) {
                     if (state == true) {
@@ -303,30 +329,29 @@ public class MainInterface extends javax.swing.JFrame {
                 }
             }
         };
-        
-        
+
         //store task tracker 
         String task_title = jTextField1.getText();
-        
-        if(task_title.isEmpty()){
+
+        if (task_title.isEmpty()) {
             task_title = "No%20Title";
-        }else{
-            task_title = task_title.replace(" ","%20");
+        } else {
+            task_title = task_title.replace(" ", "%20");
         }
-        
+
         String project = jComboBox3.getSelectedItem().toString();
-        project = project.replace(" ","%20");
-        ApiTimeTracker apiTimeTracker =  new ApiTimeTracker(this.email,project,task_title);
+        project = project.replace(" ", "%20");
+        ApiTimeTracker apiTimeTracker = new ApiTimeTracker(this.email, project, task_title);
         TimeTracker timeTracker = apiTimeTracker.track();
         this.timeTrackerId = timeTracker.getTuimeTrackerId();
         System.out.println(timeTrackerId + " From Main Interface");
-        
+
         //take screenshot
-        new ScreenShot(this.email,this.timeTrackerId.toString()).start();
-        
+        new ScreenShot(this.email, this.timeTrackerId.toString()).start();
+
         //start stopwatch
         stopwatch.start();
-        
+
         //disable all input
         disable_all();
 
@@ -345,20 +370,20 @@ public class MainInterface extends javax.swing.JFrame {
 
         //enable all input
         enable_all();
-        
+
         //reset stopwatch
         state = false;
         milliseconds = 0;
         seconds = 0;
         minutes = 0;
         hours = 0;
-        
+
         new ApiTimeTrackerStop(this.timeTrackerId.toString()).stopTracking();
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         this.setVisible(false);
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>( new ApiTest(this.email).getProjectList() ));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new ApiTest(this.email).getProjectList()));
         this.setVisible(true);
     }//GEN-LAST:event_refreshButtonActionPerformed
 
@@ -397,23 +422,23 @@ public class MainInterface extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void disable_all(){
+
+    private void disable_all() {
         jComboBox3.setEnabled(false);
         jTextField1.setEnabled(false);
         startButton.setEnabled(false);
         refreshButton.setEnabled(false);
-        
+
         //enable stop button
         stopButton.setEnabled(true);
     }
-    
-    private void enable_all(){
+
+    private void enable_all() {
         jComboBox3.setEnabled(true);
         jTextField1.setEnabled(true);
         startButton.setEnabled(true);
         refreshButton.setEnabled(true);
-        
+
         //disable stop button
         stopButton.setEnabled(false);
     }

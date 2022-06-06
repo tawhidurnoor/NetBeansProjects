@@ -39,11 +39,11 @@ public class ApiTest {
             //https://www.metaweather.com/api/location/search/?query=<CITY>
             //https://www.metaweather.com/api/location/44418/
             
-//            String url_link = "https://timetracker.codecloudtech.com/dextop_login?" + "email=" + this.email + "&password=" + this.password;
+//            String url_link = "http://127.0.0.1:8000/dextop_login?" + "email=" + this.email + "&password=" + this.password;
 
-             String url_link = "https://timetracker.codecloudtech.com/dextop_projects";
+             String url_link = "http://127.0.0.1:8000/dextop_projects";
 
-            URL url = new URL("https://timetracker.codecloudtech.com/dextop_projects" + "?email=" + this.email);
+            URL url = new URL("http://127.0.0.1:8000/dextop_projects" + "?email=" + this.email);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
