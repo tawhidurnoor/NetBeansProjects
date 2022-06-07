@@ -27,9 +27,7 @@ import java.util.logging.Logger;
 
 //for uploading files to server
 import java.io.File;
-import java.math.BigInteger;
 import java.net.http.HttpResponse;
-import models.TimeTracker;
 
 /**
  *
@@ -39,24 +37,10 @@ public class ScreenShot extends Thread {
 
     private String email;
     private String timeTrackerId;
-    private int screenshotDuration;
 
     public ScreenShot(String email, String project) {
         this.email = email;
         this.timeTrackerId = project;
-
-        System.out.println("http://127.0.0.1:8000/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId );
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = (HttpRequest) HttpRequest.newBuilder()
-                .version(HttpClient.Version.HTTP_1_1)
-                .uri(URI.create("http://127.0.0.1:8000/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId ))
-                .build();
-        String screenshotDurationString = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenApply(HttpResponse::body)
-                .join();
-        
-        this.screenshotDuration =  Integer.parseInt(screenshotDurationString);
-
     }
 
     public static final long serialVersionUID = 1L;
@@ -102,15 +86,15 @@ public class ScreenShot extends Thread {
                 HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();
                 HttpResponse response = httpClient.send(request, BodyHandlers.ofString());
                 System.out.println(response);
+                
 
-            } catch (AWTException | IOException ex) {
+            } catch (AWTException | IOException  ex) {
                 System.out.println(ex);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ScreenShot.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                System.out.println(this.screenshotDuration);
-                Thread.sleep(this.screenshotDuration * 60 * 1000); //minutes  *seconds in a minute * milliseconds in a second
+                Thread.sleep(2*60*1000); //minutes  *seconds in a minute * milliseconds in a second
             } catch (InterruptedException ex) {
                 Logger.getLogger(ScreenShot.class.getName()).log(Level.SEVERE, null, ex);
             }

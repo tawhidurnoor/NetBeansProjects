@@ -10,3 +10,6 @@
 /HttpConnection/build/
 /HttpConnection/dist/
 /TimeTracker/dist/
+/TimeTrackerNoUi/build/
+/TimeTrackerNoUi/dist/
+/TimeTrackerNoUi/nbproject/private/

@@ -8,10 +8,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 import java.math.BigInteger;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import models.TimeTracker;
@@ -381,11 +378,7 @@ public class MainInterface extends javax.swing.JFrame {
         minutes = 0;
         hours = 0;
 
-        try {
-            new ApiTimeTrackerStop(this.timeTrackerId.toString()).stopTracking();
-        } catch (IOException ex) {
-            Logger.getLogger(MainInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new ApiTimeTrackerStop(this.timeTrackerId.toString()).stopTracking();
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
