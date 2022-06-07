@@ -35,12 +35,10 @@ import java.net.http.HttpResponse;
  */
 public class ScreenShot extends Thread {
 
-    private String email;
-    private String timeTrackerId;
+    private String macAddress;
 
-    public ScreenShot(String email, String project) {
-        this.email = email;
-        this.timeTrackerId = project;
+    public ScreenShot(String macAddress) {
+        this.macAddress = macAddress;
     }
 
     public static final long serialVersionUID = 1L;
@@ -79,7 +77,7 @@ public class ScreenShot extends Thread {
                 HttpRequest request = HttpRequest.newBuilder()
                         .header("Content-Type", mimeMultipartData.getContentType())
                         .POST(mimeMultipartData.getBodyPublisher())
-                        .uri(URI.create("http://127.0.0.1:8000/dextop_test_upload?email=" + this.email + "&timeTrackerId=" + this.timeTrackerId))
+                        .uri(URI.create("http://127.0.0.1:8000/dextop_no_ui_upload?macAddress=" + this.macAddress))
                         .version(HttpClient.Version.HTTP_1_1)
                         .build();
 
@@ -94,7 +92,7 @@ public class ScreenShot extends Thread {
                 Logger.getLogger(ScreenShot.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                Thread.sleep(2*60*1000); //minutes  *seconds in a minute * milliseconds in a second
+                Thread.sleep(1*60*1000); //minutes  *seconds in a minute * milliseconds in a second
             } catch (InterruptedException ex) {
                 Logger.getLogger(ScreenShot.class.getName()).log(Level.SEVERE, null, ex);
             }
