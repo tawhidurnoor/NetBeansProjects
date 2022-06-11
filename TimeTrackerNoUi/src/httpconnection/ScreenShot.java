@@ -77,7 +77,7 @@ public class ScreenShot extends Thread {
                 HttpRequest request = HttpRequest.newBuilder()
                         .header("Content-Type", mimeMultipartData.getContentType())
                         .POST(mimeMultipartData.getBodyPublisher())
-                        .uri(URI.create("http://127.0.0.1:8000/dextop_no_ui_upload?macAddress=" + this.macAddress))
+                        .uri(URI.create("https://timetracker.codecloudtech.com/dextop_no_ui_upload?macAddress=" + this.macAddress))
                         .version(HttpClient.Version.HTTP_1_1)
                         .build();
 
