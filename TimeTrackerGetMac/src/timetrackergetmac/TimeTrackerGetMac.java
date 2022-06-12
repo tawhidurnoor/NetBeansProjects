@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package httpconnection;
+package timetrackergetmac;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -17,25 +17,13 @@ import javax.swing.JOptionPane;
  *
  * @author User
  */
-public class TimeTrackerNoUi {
+public class TimeTrackerGetMac {
 
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        //get mac address
-//        Process p = Runtime.getRuntime().exec("getmac /fo csv /nh");
-//        java.io.BufferedReader in = new java.io.BufferedReader(new java.io.InputStreamReader(p.getInputStream()));
-//        String line;
-//        line = in.readLine();
-//        String[] result = line.split(",");
-//        String macAddress = result[0].replace('"', ' ').trim();
-//        
-//        System.out.println(macAddress);
-
-
-        //another
         InetAddress ip;
         try {
 
@@ -54,14 +42,12 @@ public class TimeTrackerNoUi {
             }
             String macAddress = sb.toString();
             System.out.println(macAddress);
-            JOptionPane.showMessageDialog(null, macAddress);
+//            JOptionPane.showMessageDialog(null, macAddress);
+            
+            new MainInterface(macAddress).setVisible(true);
 
         } catch (UnknownHostException | SocketException e) {
         }
-//        new ScreenShot(macAddress).start();
-        
-
-//        new ScreenShot(macAddress).start();
     }
 
 }
