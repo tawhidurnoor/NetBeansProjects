@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package httpconnection;
+package timetracker;
 
 /**
  *
  * @author User
  */
-public class HttpConnection {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args){
-        new loginUi().setVisible(true);
-    }
+class JSONArray {
     
 }

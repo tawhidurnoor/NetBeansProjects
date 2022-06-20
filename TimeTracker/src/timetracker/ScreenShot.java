@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package httpconnection;
+package timetracker;
 
 import java.awt.AWTException;
 import java.awt.Rectangle;
@@ -45,11 +45,11 @@ public class ScreenShot extends Thread {
         this.email = email;
         this.timeTrackerId = project;
 
-        System.out.println("http://127.0.0.1:8000/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId );
+        System.out.println("http://127.0.0.1:8000/api/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId );
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = (HttpRequest) HttpRequest.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
-                .uri(URI.create("http://127.0.0.1:8000/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId ))
+                .uri(URI.create("http://127.0.0.1:8000/api/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId ))
                 .build();
         String screenshotDurationString = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
@@ -95,7 +95,7 @@ public class ScreenShot extends Thread {
                 HttpRequest request = HttpRequest.newBuilder()
                         .header("Content-Type", mimeMultipartData.getContentType())
                         .POST(mimeMultipartData.getBodyPublisher())
-                        .uri(URI.create("http://127.0.0.1:8000/dextop_test_upload?email=" + this.email + "&timeTrackerId=" + this.timeTrackerId))
+                        .uri(URI.create("http://127.0.0.1:8000/api/dextop_test_upload?email=" + this.email + "&timeTrackerId=" + this.timeTrackerId))
                         .version(HttpClient.Version.HTTP_1_1)
                         .build();
 

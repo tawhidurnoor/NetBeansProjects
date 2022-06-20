@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package httpconnection;
+package timetracker;
 
 import models.TimeTracker;
 import java.math.BigInteger;
@@ -35,11 +35,11 @@ public class ApiTimeTracker extends Thread {
 
     
     public TimeTracker track() {
-        System.out.println("http://127.0.0.1:8000/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title);
+        System.out.println("http://127.0.0.1:8000/api/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = (HttpRequest) HttpRequest.newBuilder()
                 .version(Version.HTTP_1_1)
-                .uri(URI.create("http://127.0.0.1:8000/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title))
+                .uri(URI.create("http://127.0.0.1:8000/api/dextop_time_tracker?" + "email=" + this.email + "&project=" + this.project + "&task_title=" + this.task_title))
                 .build();
 //        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
 //                .thenApply(HttpResponse::body)

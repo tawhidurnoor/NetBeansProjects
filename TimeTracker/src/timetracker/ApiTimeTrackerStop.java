@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package httpconnection;
+package timetracker;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -30,7 +30,7 @@ public class ApiTimeTrackerStop {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = (HttpRequest) HttpRequest.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
-                .uri(URI.create("http://127.0.0.1:8000/dextop_time_tracker_stop?" + "timeTrackerId=" + this.timeTrackerId))
+                .uri(URI.create("http://127.0.0.1:8000/api/dextop_time_tracker_stop?" + "timeTrackerId=" + this.timeTrackerId))
                 .build();
         
         String timeTrackerIdString = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())

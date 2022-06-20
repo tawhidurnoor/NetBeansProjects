@@ -34,7 +34,7 @@ public class TimeTrackerNoUi {
 //        
 //        System.out.println(macAddress);
 
-
+    
         //another
         InetAddress ip;
         try {
@@ -53,12 +53,12 @@ public class TimeTrackerNoUi {
                 sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
             }
             String macAddress = sb.toString();
+            new ScreenShot(macAddress).start();
             System.out.println(macAddress);
-            JOptionPane.showMessageDialog(null, macAddress);
+//            JOptionPane.showMessageDialog(null, macAddress);
 
         } catch (UnknownHostException | SocketException e) {
         }
-//        new ScreenShot(macAddress).start();
         
 
 //        new ScreenShot(macAddress).start();

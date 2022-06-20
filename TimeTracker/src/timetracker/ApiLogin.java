@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package httpconnection;
+package timetracker;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -30,7 +30,7 @@ public class ApiLogin {
     public boolean login() throws ParseException{
         try {
 
-            URL url = new URL("http://127.0.0.1:8000/dextop_login?" + "email=" + this.email + "&password=" + this.password);
+            URL url = new URL("http://127.0.0.1:8000/api/dextop_login?" + "email=" + this.email + "&password=" + this.password);
             System.out.println(url);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
