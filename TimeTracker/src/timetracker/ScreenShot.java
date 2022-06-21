@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 import java.io.File;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
+import java.nio.file.Paths;
 import models.TimeTracker;
 
 /**
@@ -75,7 +76,9 @@ public class ScreenShot extends Thread {
                 String timeStamp = sdf3.format(timestamp);
                 String file_name = timeStamp + "_ScreenShot.jpg";
                 //String path = "E:/Tawhidur Nood Badhan/Time_Tracker_Solution--Web-Module/public/captured/"+file_name;
-                String path = "E:/captured/" + file_name;
+                String directory =  "C:/Users/"+ System.getProperty("user.name") + "/Documents/TimeTrackerCaptured";
+                Files.createDirectories(Paths.get(directory));
+                String path = directory + "/" + file_name;
 
                 // Used to get ScreenSize and capture image
                 Rectangle capture = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
@@ -85,7 +88,7 @@ public class ScreenShot extends Thread {
                 //System.out.println(Screenshot.stopper);
 
                 //upload the file to server
-                File fileA = new File("E:/captured/" + file_name);
+                File fileA = new File(directory + "/" + file_name);
 
                 MimeMultipartData mimeMultipartData = MimeMultipartData.newBuilder()
                         .withCharset(StandardCharsets.UTF_8)
@@ -102,6 +105,9 @@ public class ScreenShot extends Thread {
                 HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();
                 HttpResponse response = httpClient.send(request, BodyHandlers.ofString());
                 System.out.println(response);
+                
+                //deleting file
+                fileA.delete();
 
             } catch (AWTException | IOException ex) {
                 System.out.println(ex);
