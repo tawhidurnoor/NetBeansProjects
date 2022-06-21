@@ -6,6 +6,8 @@ package timetracker;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -14,13 +16,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import models.TimeTracker;
 
 /**
  *
  * @author User
  */
-public class MainInterface extends javax.swing.JFrame {
+public class MainInterface extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form MainInterface
@@ -31,10 +34,32 @@ public class MainInterface extends javax.swing.JFrame {
     private String user_name;
     private BigInteger timeTrackerId;
 
-    static int milliseconds = 0;
-    static int seconds = 0;
-    static int minutes = 0;
-    static int hours = 0;
+    int elapsedTime = 0;
+    int seconds = 0;
+    int minutes = 0;
+    int hours = 0;
+    boolean started = false;
+    String seconds_string = String.format("%02d", seconds);
+    String minutes_string = String.format("%02d", minutes);
+    String hours_string = String.format("%02d", hours);
+    
+    Timer timer = new Timer(1000, new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            elapsedTime = elapsedTime + 1000;
+            hours = (elapsedTime / 3600000);
+            minutes = (elapsedTime / 60000) % 60;
+            seconds = (elapsedTime / 1000) % 60;
+            seconds_string = String.format("%02d", seconds);
+            minutes_string = String.format("%02d", minutes);
+            hours_string = String.format("%02d", hours);
+            timeaLabel.setText(hours_string + ":" + minutes_string + ":" + seconds_string);
+
+        }
+
+    });
 
     static boolean state = true;
 
@@ -72,6 +97,24 @@ public class MainInterface extends javax.swing.JFrame {
     private MainInterface() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == startButton) {
+
+            if (started == false) {
+                started = true;
+                disable_all();
+            } else {
+                started = false;
+                startButton.setText("START");
+                enable_all();
+            }
+
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,7 +130,7 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
-        hour = new javax.swing.JLabel();
+        timeaLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -95,12 +138,6 @@ public class MainInterface extends javax.swing.JFrame {
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        minute = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        second = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        milisecond = new javax.swing.JLabel();
         refreshButton = new javax.swing.JButton();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -123,8 +160,8 @@ public class MainInterface extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 500));
 
-        hour.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
-        hour.setText("00");
+        timeaLabel.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
+        timeaLabel.setText("00:00:00");
 
         jLabel8.setFont(new java.awt.Font("Source Sans Pro Black", 1, 16)); // NOI18N
         jLabel8.setText("Worked Today");
@@ -174,24 +211,6 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
         jLabel1.setText("Time Tracker Solution alpha_1.0.0");
 
-        jLabel2.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
-        jLabel2.setText(":");
-
-        minute.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
-        minute.setText("00");
-
-        jLabel3.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
-        jLabel3.setText(":");
-
-        second.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
-        second.setText("00");
-
-        jLabel12.setFont(new java.awt.Font("Source Sans Pro Light", 0, 36)); // NOI18N
-        jLabel12.setText(":");
-
-        milisecond.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        milisecond.setText("00");
-
         refreshButton.setBackground(new java.awt.Color(102, 153, 255));
         refreshButton.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
         refreshButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,20 +241,7 @@ public class MainInterface extends javax.swing.JFrame {
                                 .addComponent(jTextField1)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(hour)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(minute)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(second)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel12)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(milisecond))
+                                .addComponent(timeaLabel, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, 349, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
@@ -252,17 +258,7 @@ public class MainInterface extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(second)
-                        .addComponent(jLabel12)
-                        .addComponent(milisecond))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(minute)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(hour)
-                        .addComponent(jLabel2)))
+                .addComponent(timeaLabel)
                 .addGap(58, 58, 58)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -270,7 +266,7 @@ public class MainInterface extends javax.swing.JFrame {
                     .addComponent(stopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -292,46 +288,6 @@ public class MainInterface extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
 
         state = true;
-        Thread stopwatch = new Thread() {
-            @Override
-            public void run() {
-                for (;;) {
-                    if (state == true) {
-                        try {
-                            sleep(1);
-
-                            if (milliseconds > 1000) {
-                                milliseconds = 0;
-                                seconds++;
-                            }
-                            if (seconds > 60) {
-                                milliseconds = 0;
-                                seconds = 0;
-                                minutes++;
-                            }
-
-                            if (minutes > 60) {
-                                milliseconds = 0;
-                                seconds = 0;
-                                minutes = 0;
-                                hours++;
-                            }
-
-                            milisecond.setText("" + String.format("%02d", milliseconds));
-                            second.setText("" + String.format("%02d", seconds));
-                            minute.setText("" + String.format("%02d", minutes));
-                            hour.setText("" + String.format("%02d", hours));
-
-                            milliseconds++;
-
-                        } catch (Exception e) {
-                        }
-                    } else {
-                        break;
-                    }
-                }
-            }
-        };
 
         //store task tracker 
         String task_title = jTextField1.getText();
@@ -353,7 +309,7 @@ public class MainInterface extends javax.swing.JFrame {
         new ScreenShot(this.email, this.timeTrackerId.toString()).start();
 
         //start stopwatch
-        stopwatch.start();
+        timer.start();
 
         //disable all input
         disable_all();
@@ -374,12 +330,15 @@ public class MainInterface extends javax.swing.JFrame {
         //enable all input
         enable_all();
 
-        //reset stopwatch
-        state = false;
-        milliseconds = 0;
+        timer.stop();
+        elapsedTime = 0;
         seconds = 0;
         minutes = 0;
         hours = 0;
+        seconds_string = String.format("%02d", seconds);
+        minutes_string = String.format("%02d", minutes);
+        hours_string = String.format("%02d", hours);
+        timeaLabel.setText(hours_string + ":" + minutes_string + ":" + seconds_string);
 
         try {
             new ApiTimeTrackerStop(this.timeTrackerId.toString()).stopTracking();
@@ -451,13 +410,9 @@ public class MainInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel hour;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -465,11 +420,9 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel milisecond;
-    private javax.swing.JLabel minute;
     private javax.swing.JButton refreshButton;
-    private javax.swing.JLabel second;
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
+    private javax.swing.JLabel timeaLabel;
     // End of variables declaration//GEN-END:variables
 }
