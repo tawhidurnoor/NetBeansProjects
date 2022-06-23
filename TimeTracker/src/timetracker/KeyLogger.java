@@ -1,9 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package timetrackerkeylogger;
+package timetracker;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,27 +13,33 @@ import org.jnativehook.keyboard.NativeKeyListener;
 
 /**
  *
- * @author User
+ * @author HP
  */
-public class TImeTrackerKeyLogger implements NativeKeyListener {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-
-        try {
-            GlobalScreen.registerNativeHook();
-        } catch (NativeHookException ex) {
-            Logger.getLogger(TImeTrackerKeyLogger.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        GlobalScreen.addNativeKeyListener(new TImeTrackerKeyLogger());
-
-    }
-
+public final class KeyLogger implements NativeKeyListener {
+    private static KeyLogger instance;
     private int totalKeyPressed;
-
+    
+    private KeyLogger(){}
+    
+    public static KeyLogger getInstance(){
+        if (instance == null) {
+            instance = new KeyLogger();
+        }
+        return instance;
+    }
+    
+//    public static void main(String args[]) {
+//
+//        try {
+//            GlobalScreen.registerNativeHook();
+//        } catch (NativeHookException ex) {
+//            Logger.getLogger(KeyLogger.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        GlobalScreen.addNativeKeyListener(new KeyLogger());
+//
+//    }
+    
     public int getTotalKeyPressed() {
         return totalKeyPressed;
     }
@@ -57,7 +62,6 @@ public class TImeTrackerKeyLogger implements NativeKeyListener {
     public void nativeKeyReleased(NativeKeyEvent nke) {
 //        System.out.println("Released" + NativeKeyEvent.getKeyText(nke.getKeyCode()));
         this.totalKeyPressed++;
-        System.out.println(this.totalKeyPressed);
+        System.out.println("Total key pressed: " + this.totalKeyPressed);
     }
-
 }

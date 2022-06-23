@@ -31,6 +31,8 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.nio.file.Paths;
 import models.TimeTracker;
+import org.jnativehook.GlobalScreen;
+import org.jnativehook.NativeHookException;
 
 /**
  *
@@ -40,23 +42,24 @@ public class ScreenShot extends Thread {
 
     private String email;
     private String timeTrackerId;
+    private String status;
     private int screenshotDuration;
 
     public ScreenShot(String email, String project) {
         this.email = email;
         this.timeTrackerId = project;
 
-        System.out.println("http://127.0.0.1:8000/api/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId );
+        System.out.println("http://127.0.0.1:8000/api/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = (HttpRequest) HttpRequest.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
-                .uri(URI.create("http://127.0.0.1:8000/api/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId ))
+                .uri(URI.create("http://127.0.0.1:8000/api/dextop_screenshot_duration?" + "email=" + this.email + "&time_tracker_id=" + this.timeTrackerId))
                 .build();
         String screenshotDurationString = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .join();
-        
-        this.screenshotDuration =  Integer.parseInt(screenshotDurationString);
+
+        this.screenshotDuration = Integer.parseInt(screenshotDurationString);
 
     }
 
@@ -76,7 +79,7 @@ public class ScreenShot extends Thread {
                 String timeStamp = sdf3.format(timestamp);
                 String file_name = timeStamp + "_ScreenShot.jpg";
                 //String path = "E:/Tawhidur Nood Badhan/Time_Tracker_Solution--Web-Module/public/captured/"+file_name;
-                String directory =  "C:/Users/"+ System.getProperty("user.name") + "/Documents/TimeTrackerCaptured";
+                String directory = "C:/Users/" + System.getProperty("user.name") + "/Documents/TimeTrackerCaptured";
                 Files.createDirectories(Paths.get(directory));
                 String path = directory + "/" + file_name;
 
@@ -95,19 +98,43 @@ public class ScreenShot extends Thread {
                         .addFile("file", fileA.toPath(), Files.probeContentType(fileA.toPath()))
                         .build();
 
+                //getting average key pressed per minute
+                System.out.println("Wired: " + KeyLogger.class.getName());
+                KeyLogger keyLogger = KeyLogger.getInstance();
+                try {
+                    GlobalScreen.registerNativeHook();
+                } catch (NativeHookException ex) {
+//                    Logger.getLogger(KeyLogger.class.getName()).log(Level.SEVERE, null, ex);
+                      Logger.getLogger(keyLogger.getClass().getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                GlobalScreen.addNativeKeyListener(keyLogger);
+
+//                KeyLogger keyLogger = new KeyLogger();
+                int averageKeyPressed = keyLogger.getTotalKeyPressed() / this.screenshotDuration;
+
+                if (averageKeyPressed <= 20) {
+                    this.status = "Low";
+                } else if (averageKeyPressed >= 21 && averageKeyPressed <= 30) {
+                    this.status = "Okay";
+                } else {
+                    this.status = "Excellent";
+                }
+
                 HttpRequest request = HttpRequest.newBuilder()
                         .header("Content-Type", mimeMultipartData.getContentType())
                         .POST(mimeMultipartData.getBodyPublisher())
-                        .uri(URI.create("http://127.0.0.1:8000/api/dextop_test_upload?email=" + this.email + "&timeTrackerId=" + this.timeTrackerId))
+                        .uri(URI.create("http://127.0.0.1:8000/api/dextop_test_upload?email=" + this.email + "&timeTrackerId=" + this.timeTrackerId + "&activity=" + this.status))
                         .version(HttpClient.Version.HTTP_1_1)
                         .build();
 
                 HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();
                 HttpResponse response = httpClient.send(request, BodyHandlers.ofString());
                 System.out.println(response);
-                
+
                 //deleting file
                 fileA.delete();
+                keyLogger.setTotalKeyPressed(0);
 
             } catch (AWTException | IOException ex) {
                 System.out.println(ex);
