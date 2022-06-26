@@ -99,8 +99,8 @@ public class ScreenShot extends Thread {
                         .build();
 
                 //getting average key pressed per minute
-                System.out.println("Wired: " + KeyLogger.class.getName());
                 KeyLogger keyLogger = KeyLogger.getInstance();
+                keyLogger.setTotalKeyPressed(0);
                 try {
                     GlobalScreen.registerNativeHook();
                 } catch (NativeHookException ex) {

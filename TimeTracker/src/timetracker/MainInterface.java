@@ -307,7 +307,7 @@ public class MainInterface extends javax.swing.JFrame implements ActionListener{
 
         //take screenshot
         new ScreenShot(this.email, this.timeTrackerId.toString()).start();
-
+        
         //start stopwatch
         timer.start();
 
