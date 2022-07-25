@@ -30,6 +30,7 @@ import java.io.File;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.nio.file.Paths;
+import java.util.Random;
 import models.TimeTracker;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
@@ -142,8 +143,10 @@ public class ScreenShot extends Thread {
                 Logger.getLogger(ScreenShot.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                System.out.println(this.screenshotDuration);
-                Thread.sleep(this.screenshotDuration * 60 * 1000); //minutes  *seconds in a minute * milliseconds in a second
+                Random random = new Random();
+                int randomScreenshotDuration = random.nextInt(this.screenshotDuration);
+                
+                Thread.sleep(randomScreenshotDuration * 60 * 1000); //minutes  *seconds in a minute * milliseconds in a second
             } catch (InterruptedException ex) {
                 Logger.getLogger(ScreenShot.class.getName()).log(Level.SEVERE, null, ex);
             }

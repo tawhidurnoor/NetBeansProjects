@@ -153,7 +153,7 @@ public class MainInterface extends javax.swing.JFrame implements ActionListener{
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Time Tracker", "Bizzy", "Mohanagar" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Time Tracker Solution");
+        setTitle("Task Monitor");
         setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         setResizable(false);
 
@@ -209,7 +209,7 @@ public class MainInterface extends javax.swing.JFrame implements ActionListener{
         });
 
         jLabel1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
-        jLabel1.setText("Time Tracker Solution alpha_1.0.0");
+        jLabel1.setText("TaskMonitor alpha_1.0.0");
 
         refreshButton.setBackground(new java.awt.Color(102, 153, 255));
         refreshButton.setFont(new java.awt.Font("Source Sans Pro Black", 1, 14)); // NOI18N
@@ -244,7 +244,7 @@ public class MainInterface extends javax.swing.JFrame implements ActionListener{
                                 .addComponent(timeaLabel, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, 349, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
+                        .addGap(116, 116, 116)
                         .addComponent(jLabel1)))
                 .addGap(0, 33, Short.MAX_VALUE))
         );
@@ -266,9 +266,9 @@ public class MainInterface extends javax.swing.JFrame implements ActionListener{
                     .addComponent(stopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap())
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

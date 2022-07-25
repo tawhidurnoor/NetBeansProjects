@@ -47,7 +47,7 @@ public class loginUi extends javax.swing.JFrame {
         passwordInput = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login - Time Tracker Solution");
+        setTitle("Login - Task Monitor");
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 248));
 
