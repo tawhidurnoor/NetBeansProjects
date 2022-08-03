@@ -101,7 +101,7 @@ public class ScreenShot extends Thread {
 
                 //getting average key pressed per minute
                 KeyLogger keyLogger = KeyLogger.getInstance();
-                keyLogger.setTotalKeyPressed(0);
+//                keyLogger.setTotalKeyPressed(0);
                 try {
                     GlobalScreen.registerNativeHook();
                 } catch (NativeHookException ex) {
@@ -113,10 +113,13 @@ public class ScreenShot extends Thread {
 
 //                KeyLogger keyLogger = new KeyLogger();
                 int averageKeyPressed = keyLogger.getTotalKeyPressed() / this.screenshotDuration;
+                
+                System.out.println("Total key pressed: " + keyLogger.getTotalKeyPressed());
+                System.out.println("Avg key pressed: " + averageKeyPressed);
 
-                if (averageKeyPressed <= 20) {
+                if (averageKeyPressed <= 100) {
                     this.status = "Low";
-                } else if (averageKeyPressed >= 21 && averageKeyPressed <= 30) {
+                } else if (averageKeyPressed >= 101 && averageKeyPressed <= 200) {
                     this.status = "Okay";
                 } else {
                     this.status = "Excellent";
