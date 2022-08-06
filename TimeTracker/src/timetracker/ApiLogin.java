@@ -29,8 +29,8 @@ public class ApiLogin {
     @SuppressWarnings("empty-statement")
     public boolean login() throws ParseException{
         try {
-
-            URL url = new URL("https://www.taskmonitor.xyz/api/dextop_login?" + "email=" + this.email + "&password=" + this.password);
+            this.password = this.password.replace("#","%23");//replaces all occurrences of 'a' to 'e'  
+            URL url = new URL("http://127.0.0.1:8000/api/dextop_login?" + "email=" + this.email + "&password=" + this.password);
             System.out.println(url);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -75,6 +75,7 @@ public class ApiLogin {
             System.out.println(e);
             this.response = false;
         }
+
         
         return this.response;
     }
