@@ -15,7 +15,7 @@ import org.jnativehook.keyboard.NativeKeyListener;
  *
  * @author HP
  */
-public final class KeyLogger implements NativeKeyListener {
+public final class KeyLogger implements NativeKeyListener{
     private static KeyLogger instance;
     private int totalKeyPressed;
     
@@ -64,4 +64,6 @@ public final class KeyLogger implements NativeKeyListener {
         this.totalKeyPressed++;
         System.out.println("Total key pressed: " + this.totalKeyPressed);
     }
+    
+    
 }
