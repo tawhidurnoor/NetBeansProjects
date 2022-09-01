@@ -4,6 +4,7 @@
  */
 package timetracker;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 import java.awt.AWTException;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -102,6 +103,8 @@ public class ScreenShot extends Thread {
                 //getting average key pressed per minute
                 KeyLogger keyLogger = KeyLogger.getInstance();
 //                keyLogger.setTotalKeyPressed(0);
+
+
                 try {
                     GlobalScreen.registerNativeHook();
                 } catch (NativeHookException ex) {
@@ -124,11 +127,18 @@ public class ScreenShot extends Thread {
                 } else {
                     this.status = "Excellent";
                 }
+                
+                
+                //mouse click counter
+                MouseLogger mouseLogger = MouseLogger.getInstance();
+                addMouseListener(mouseLogger);
+                int totalMouseClick = mouseLogger.getMouseClick();
+//                mouseLogger.setMouseClick(0);
 
                 HttpRequest request = HttpRequest.newBuilder()
                         .header("Content-Type", mimeMultipartData.getContentType())
                         .POST(mimeMultipartData.getBodyPublisher())
-                        .uri(URI.create("http://127.0.0.1:8000/api/dextop_test_upload?email=" + this.email + "&timeTrackerId=" + this.timeTrackerId + "&activity=" + this.status))
+                        .uri(URI.create("http://127.0.0.1:8000/api/dextop_test_upload?email=" + this.email + "&timeTrackerId=" + this.timeTrackerId + "&activity=" + this.status + "&keystroke=" + keyLogger.getTotalKeyPressed() + "&mouse_click=" + totalMouseClick ))
                         .version(HttpClient.Version.HTTP_1_1)
                         .build();
 
